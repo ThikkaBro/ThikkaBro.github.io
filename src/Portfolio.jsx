@@ -5,6 +5,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 ───────────────────────────────────────────── */
 
 const PHRASES = [
+  "Founder of LexoraTech",
   "Full-Stack Engineer",
   "AI Builder",
   "SaaS Founder",
@@ -14,28 +15,32 @@ const PHRASES = [
 
 const PROJECTS = [
   {
-    id: 1, cat: "AI · SaaS",
-    name: "AI SaaS Platform",
-    desc: "Intelligent tools automating complex workflows and accelerating business growth for a global user base.",
-    status: "Active", sc: "#4A9DFF", sb: "rgba(74,157,255,0.08)", icon: "⚡",
+    id: 1, cat: "Workspace · Platform",
+    name: "Lexora Workspace",
+    desc: "A fully integrated workspace platform under LexoraTech, designed for seamless collaboration and productivity.",
+    status: "Live", sc: "#4A9DFF", sb: "rgba(74,157,255,0.08)", link: "https://apps.lexoratech.com/",
+    icon: <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>,
   },
   {
-    id: 2, cat: "Education · Tech",
-    name: "E-Learning Platform",
-    desc: "Teaching AI application development to entrepreneurs building the next wave of technology startups.",
-    status: "Building", sc: "#A78BFA", sb: "rgba(167,139,250,0.08)", icon: "📚",
+    id: 2, cat: "E-Commerce · SEO",
+    name: "LexoraTech Store",
+    desc: "Robust backend architecture and comprehensive SEO optimization driving high-performance e-commerce experiences.",
+    status: "Live", sc: "#A78BFA", sb: "rgba(167,139,250,0.08)", link: "https://lexoratech.store",
+    icon: <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>,
   },
   {
-    id: 3, cat: "Product · Growth",
-    name: "Micro-SaaS Products",
-    desc: "High-retention digital tools targeting niche, high-value markets with strong product-market fit.",
-    status: "Shipping", sc: "#34D399", sb: "rgba(52,211,153,0.08)", icon: "🚀",
+    id: 3, cat: "API · Architecture",
+    name: "Nimithi Platform",
+    desc: "High-intensity backend API infrastructure built for demanding, data-heavy applications and seamless integrations.",
+    status: "Live", sc: "#34D399", sb: "rgba(52,211,153,0.08)", link: "https://nimithi.com",
+    icon: <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="14" width="8" height="8" rx="2" ry="2"/><rect x="14" y="2" width="8" height="8" rx="2" ry="2"/><line x1="6" y1="14" x2="6" y2="10"/><line x1="18" y1="10" x2="18" y2="14"/><line x1="6" y1="10" x2="18" y2="10"/></svg>,
   },
   {
-    id: 4, cat: "Hardware · IoT",
-    name: "IoT & PCB Projects",
-    desc: "Bridging software and the physical world — custom PCB design, ESP32 firmware, and smart enclosures.",
-    status: "Exploring", sc: "#FBBF24", sb: "rgba(251,191,36,0.08)", icon: "⚙️",
+    id: 4, cat: "AI · Stealth",
+    name: "Project Nova",
+    desc: "Next-generation AI automation tool currently in stealth mode.",
+    status: "Building", sc: "#636678", sb: "rgba(99,102,120,0.08)", blurred: true,
+    icon: <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>,
   },
 ];
 
@@ -43,26 +48,30 @@ const EXPERTISE = [
   {
     title: "AI-Powered Products",
     desc: "Custom AI solutions, LLM integrations, and intelligent automation that transform business operations.",
-    icon: "🧠",
     gradient: "linear-gradient(135deg, #4A9DFF 0%, #6366F1 100%)",
+    iconColor: "#4A9DFF",
+    icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg>,
   },
   {
     title: "SaaS Development",
     desc: "End-to-end SaaS architecture from MVP to scale. Payment systems, auth, dashboards, and APIs.",
-    icon: "💎",
     gradient: "linear-gradient(135deg, #A78BFA 0%, #EC4899 100%)",
+    iconColor: "#A78BFA",
+    icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>,
   },
   {
     title: "Full-Stack Engineering",
     desc: "Production-grade applications with React, Next.js, Node.js, and cloud-native infrastructure.",
-    icon: "⚡",
     gradient: "linear-gradient(135deg, #34D399 0%, #06B6D4 100%)",
+    iconColor: "#34D399",
+    icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>,
   },
   {
     title: "Hardware & IoT",
     desc: "Custom PCB design, ESP32 firmware, 3D-printed enclosures, and smart device prototyping.",
-    icon: "🔧",
     gradient: "linear-gradient(135deg, #FBBF24 0%, #F97316 100%)",
+    iconColor: "#FBBF24",
+    icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>,
   },
 ];
 
@@ -142,6 +151,9 @@ body,#root{background:#06060A;color:#EDF0F7;font-family:'Sora',sans-serif;overfl
 
 .gc{background:rgba(255,255,255,0.028);border:1px solid rgba(255,255,255,0.065);backdrop-filter:blur(20px);border-radius:20px;transition:all .38s cubic-bezier(.16,1,.3,1)}
 .gc:hover{border-color:rgba(74,157,255,0.22);transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.46),0 0 40px rgba(74,157,255,.05)}
+
+.project-link-icon{transition:all .3s cubic-bezier(.16,1,.3,1)}
+.gc:hover .project-link-icon{opacity:1!important;color:#4A9DFF;transform:translate(2px,-2px) scale(1.1)}
 
 /* Floating glass nav */
 .floating-nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:100;display:flex;align-items:center;gap:6px;padding:8px 10px;border-radius:100px;background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(60px) saturate(2.2);-webkit-backdrop-filter:blur(60px) saturate(2.2);box-shadow:0 8px 32px rgba(0,0,0,0.35),0 0 0 0.5px rgba(255,255,255,0.1) inset,inset 0 1px 0 rgba(255,255,255,0.08);transition:all .4s cubic-bezier(.16,1,.3,1);animation:navSlideDown 0.7s cubic-bezier(.16,1,.3,1) 0.15s both}
@@ -628,11 +640,11 @@ function About() {
     { v: "∞", l: "Ideas in Motion" },
   ];
   const chips = [
-    "🎓 SE Degree · In Progress",
-    "🚀 Micro-SaaS Builder",
-    "🤖 AI Developer",
-    "⚙️ Hardware Tinkerer",
-    "🌍 Sri Lanka → World",
+    { text: "SE Degree · In Progress", icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>, color: "#A78BFA" },
+    { text: "Micro-SaaS Builder", icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><mpath d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>, color: "#EC4899" },
+    { text: "AI Developer", icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>, color: "#4A9DFF" },
+    { text: "Hardware Tinkerer", icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>, color: "#FBBF24" },
+    { text: "Sri Lanka → World", icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>, color: "#34D399" },
   ];
 
   return (
@@ -653,7 +665,7 @@ function About() {
         {/* Text */}
         <div className="sa">
           <p style={{ fontSize: 17, lineHeight: 1.92, color: "#636678", fontWeight: 300, marginBottom: 22 }}>
-            Software Engineer and Entrepreneur from{" "}
+            Software Engineer, Entrepreneur, and Founder of <strong style={{ color: "#4A9DFF", fontWeight: 600 }}>LexoraTech</strong> from{" "}
             <strong style={{ color: "#EDF0F7", fontWeight: 600 }}>Sri Lanka</strong> completing a
             Software Engineering degree while actively building and shipping ventures with a founder's mindset.
           </p>
@@ -664,13 +676,21 @@ function About() {
             Beyond software bridging digital and physical through hardware engineering.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-            {chips.map((t) => (
-              <span key={t} style={{
-                padding: "8px 17px",
-                border: "1px solid rgba(255,255,255,0.07)",
-                borderRadius: "100px", fontSize: 13, color: "#4E5164",
+            {chips.map((c) => (
+              <span key={c.text} className="ia chip" style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                padding: "8px 18px",
+                border: "1px solid rgba(255,255,255,0.06)",
+                borderRadius: "100px", fontSize: 13.5, color: "#EDF0F7",
                 background: "rgba(255,255,255,0.02)",
-              }}>{t}</span>
+                transition: "all 0.35s cubic-bezier(0.16, 1, 0.3, 1)", cursor: "default"
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = c.color; e.currentTarget.style.background = `rgba(255,255,255,0.04)`; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = `0 8px 24px ${c.color}25`; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)"; e.currentTarget.style.background = "rgba(255,255,255,0.02)"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+              >
+                <span style={{ color: c.color, display: "flex", filter: `drop-shadow(0 0 8px ${c.color}60)` }}>{c.icon}</span>
+                {c.text}
+              </span>
             ))}
           </div>
         </div>
@@ -747,11 +767,12 @@ function Expertise() {
 
             {/* Icon */}
             <div style={{
-              width: 52, height: 52, borderRadius: 16,
+              width: 58, height: 58, borderRadius: 16,
               background: `linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01))`,
               border: "1px solid rgba(255,255,255,0.06)",
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 24, marginBottom: 20,
+              color: item.iconColor, marginBottom: 20,
+              boxShadow: `0 8px 32px ${item.iconColor}15`
             }}>
               {item.icon}
             </div>
@@ -812,32 +833,63 @@ function Projects() {
       <div className="pg" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
         {PROJECTS.map((p, i) => (
           <div key={p.id} className="gc ia" data-d={i * 88}
-            style={{ padding: "32px 30px", position: "relative", overflow: "hidden" }}>
+            style={{ 
+              padding: "32px 30px", position: "relative", overflow: "hidden",
+              cursor: p.link ? "pointer" : "default" 
+            }}
+            onClick={() => p.link && window.open(p.link, "_blank")}
+          >
             {/* Accent line */}
             <div style={{
               position: "absolute", top: 0, left: 30, right: 30, height: 1,
               background: `linear-gradient(90deg, transparent, ${p.sc}50, transparent)`,
             }} />
 
-            {/* Header row */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 22 }}>
-              <span style={{
-                fontFamily: "'JetBrains Mono'", fontSize: 10.5, color: "#262838",
-                letterSpacing: "0.12em", textTransform: "uppercase",
-              }}>{p.cat}</span>
-              <span style={{
-                padding: "4px 13px", borderRadius: "100px",
-                background: p.sb, border: `1px solid ${p.sc}45`,
-                fontSize: 11, color: p.sc, fontFamily: "'JetBrains Mono'", letterSpacing: "0.04em",
-              }}>{p.status}</span>
-            </div>
+            <div style={{ filter: p.blurred ? "blur(8px)" : "none", transition: "filter 0.3s ease", opacity: p.blurred ? 0.4 : 1, pointerEvents: p.blurred ? "none" : "auto" }}>
+              {/* Header row */}
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 22 }}>
+                <span style={{
+                  fontFamily: "'JetBrains Mono'", fontSize: 10.5, color: "#262838",
+                  letterSpacing: "0.12em", textTransform: "uppercase",
+                }}>{p.cat}</span>
+                <span style={{
+                  padding: "4px 13px", borderRadius: "100px",
+                  background: p.sb, border: `1px solid ${p.sc}45`,
+                  fontSize: 11, color: p.sc, fontFamily: "'JetBrains Mono'", letterSpacing: "0.04em",
+                }}>{p.status}</span>
+              </div>
 
-            <div style={{ fontSize: 30, marginBottom: 13 }}>{p.icon}</div>
-            <h3 style={{
-              fontSize: 20, fontWeight: 700, letterSpacing: "-0.025em",
-              marginBottom: 10, color: "#EDF0F7",
-            }}>{p.name}</h3>
-            <p style={{ fontSize: 14, lineHeight: 1.74, color: "#4E5164", fontWeight: 300 }}>{p.desc}</p>
+              <div style={{ marginBottom: 18, color: p.sc, filter: `drop-shadow(0 0 16px ${p.sc}55)` }}>{p.icon}</div>
+              <h3 style={{
+                fontSize: 20, fontWeight: 700, letterSpacing: "-0.025em",
+                marginBottom: 10, color: "#EDF0F7",
+              }}>{p.name}</h3>
+              <p style={{ fontSize: 14, lineHeight: 1.74, color: "#4E5164", fontWeight: 300 }}>{p.desc}</p>
+            </div>
+            
+            {p.blurred && (
+              <div style={{
+                position: "absolute", inset: 0, display: "flex", flexDirection: "column",
+                alignItems: "center", justifyContent: "center", zIndex: 10
+              }}>
+                <div style={{ color: "#EDF0F7", marginBottom: 12, filter: "drop-shadow(0 0 12px rgba(255,255,255,0.3))" }}>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <span style={{ fontFamily: "'JetBrains Mono'", fontSize: 12, color: "#EDF0F7", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase" }}>In Development</span>
+              </div>
+            )}
+            
+            {p.link && (
+              <div style={{
+                position: "absolute", bottom: 30, right: 30,
+                opacity: 0.3, color: "#8A8E9E"
+              }} className="project-link-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </div>
+            )}
           </div>
         ))}
       </div>
